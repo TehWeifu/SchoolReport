@@ -576,7 +576,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>${Internal.Entry.Current.Directory}/Cursos.csv</filename>
+    <filename>/home/bigdata/Resources/Cursos.csv</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>
@@ -695,6 +695,78 @@
     </GUI>
   </step>
   <step>
+    <name>GuardarModulo</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>LocalhostDB</connection>
+    <schema>SchoolReport</schema>
+    <table>Modulos</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+      <field>
+        <column_name>codigo</column_name>
+        <stream_name>codigo</stream_name>
+      </field>
+      <field>
+        <column_name>nombre</column_name>
+        <stream_name>nombre</stream_name>
+      </field>
+      <field>
+        <column_name>periodo</column_name>
+        <stream_name>periodo</stream_name>
+      </field>
+      <field>
+        <column_name>especialidad</column_name>
+        <stream_name>especialidad</stream_name>
+      </field>
+      <field>
+        <column_name>grado</column_name>
+        <stream_name>grado</stream_name>
+      </field>
+      <field>
+        <column_name>familia</column_name>
+        <stream_name>familia</stream_name>
+      </field>
+      <field>
+        <column_name>horas</column_name>
+        <stream_name>horas</stream_name>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>976</xloc>
+      <yloc>48</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>Horas</name>
     <type>CsvInput</type>
     <description/>
@@ -705,7 +777,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>/home/bigdata/SchoolProjectEtl/Horas.csv</filename>
+    <filename>/home/bigdata/Resources/Horas.csv</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>
@@ -790,7 +862,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>/home/bigdata/SchoolProjectEtl/Modulos.csv</filename>
+    <filename>/home/bigdata/Resources/Modulos.csv</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>
@@ -898,54 +970,6 @@
     </GUI>
   </step>
   <step>
-    <name>ObtenerPeriodo</name>
-    <type>StreamLookup</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <from>Crusos</from>
-    <input_sorted>N</input_sorted>
-    <preserve_memory>Y</preserve_memory>
-    <sorted_list>N</sorted_list>
-    <integer_pair>N</integer_pair>
-    <lookup>
-      <key>
-        <name>curso</name>
-        <field>codigo</field>
-      </key>
-      <value>
-        <name>nombre_cas</name>
-        <rename>periodo</rename>
-        <default/>
-        <type>None</type>
-      </value>
-      <value>
-        <name>padre</name>
-        <rename>periodo_padre</rename>
-        <default/>
-        <type>None</type>
-      </value>
-    </lookup>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>64</xloc>
-      <yloc>48</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>ObtenerEspecialidad</name>
     <type>StreamLookup</type>
     <description/>
@@ -989,6 +1013,48 @@
     </remotesteps>
     <GUI>
       <xloc>208</xloc>
+      <yloc>48</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>ObtenerFamilia</name>
+    <type>StreamLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <from>Crusos</from>
+    <input_sorted>N</input_sorted>
+    <preserve_memory>Y</preserve_memory>
+    <sorted_list>N</sorted_list>
+    <integer_pair>N</integer_pair>
+    <lookup>
+      <key>
+        <name>grado_padre</name>
+        <field>codigo</field>
+      </key>
+      <value>
+        <name>nombre_cas</name>
+        <rename>familia</rename>
+        <default/>
+        <type>None</type>
+      </value>
+    </lookup>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>528</xloc>
       <yloc>48</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1042,7 +1108,53 @@
     </GUI>
   </step>
   <step>
-    <name>ObtenerFamilia</name>
+    <name>ObtenerHoras</name>
+    <type>StreamLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <from>Horas</from>
+    <input_sorted>N</input_sorted>
+    <preserve_memory>Y</preserve_memory>
+    <sorted_list>N</sorted_list>
+    <integer_pair>N</integer_pair>
+    <lookup>
+      <key>
+        <name>codigo</name>
+        <field>CODIGO</field>
+      </key>
+      <key>
+        <name>especialidad</name>
+        <field>CICLO</field>
+      </key>
+      <value>
+        <name>HORAS</name>
+        <rename>HORAS</rename>
+        <default/>
+        <type>None</type>
+      </value>
+    </lookup>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>736</xloc>
+      <yloc>48</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>ObtenerPeriodo</name>
     <type>StreamLookup</type>
     <description/>
     <distribute>Y</distribute>
@@ -1059,12 +1171,18 @@
     <integer_pair>N</integer_pair>
     <lookup>
       <key>
-        <name>grado_padre</name>
+        <name>curso</name>
         <field>codigo</field>
       </key>
       <value>
         <name>nombre_cas</name>
-        <rename>familia</rename>
+        <rename>periodo</rename>
+        <default/>
+        <type>None</type>
+      </value>
+      <value>
+        <name>padre</name>
+        <rename>periodo_padre</rename>
         <default/>
         <type>None</type>
       </value>
@@ -1078,7 +1196,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>528</xloc>
+      <xloc>64</xloc>
       <yloc>48</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1134,78 +1252,6 @@
     </GUI>
   </step>
   <step>
-    <name>GuardarModulo</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>LocalhostDB</connection>
-    <schema>SchoolReport</schema>
-    <table>Modulos</table>
-    <commit>1000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-      <field>
-        <column_name>codigo</column_name>
-        <stream_name>codigo</stream_name>
-      </field>
-      <field>
-        <column_name>nombre</column_name>
-        <stream_name>nombre</stream_name>
-      </field>
-      <field>
-        <column_name>periodo</column_name>
-        <stream_name>periodo</stream_name>
-      </field>
-      <field>
-        <column_name>especialidad</column_name>
-        <stream_name>especialidad</stream_name>
-      </field>
-      <field>
-        <column_name>grado</column_name>
-        <stream_name>grado</stream_name>
-      </field>
-      <field>
-        <column_name>familia</column_name>
-        <stream_name>familia</stream_name>
-      </field>
-      <field>
-        <column_name>horas</column_name>
-        <stream_name>horas</stream_name>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>976</xloc>
-      <yloc>48</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>TiparModulos</name>
     <type>SelectValues</type>
     <description/>
@@ -1219,31 +1265,24 @@
     <fields>
       <field>
         <name>codigo</name>
-        <rename/>
       </field>
       <field>
         <name>nombre_cas</name>
-        <rename/>
       </field>
       <field>
         <name>periodo</name>
-        <rename/>
       </field>
       <field>
         <name>especialidad</name>
-        <rename/>
       </field>
       <field>
         <name>grado</name>
-        <rename/>
       </field>
       <field>
         <name>familia</name>
-        <rename/>
       </field>
       <field>
         <name>HORAS</name>
-        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
       <meta>
@@ -1376,52 +1415,6 @@
     </remotesteps>
     <GUI>
       <xloc>864</xloc>
-      <yloc>48</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>ObtenerHoras</name>
-    <type>StreamLookup</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <from>Horas</from>
-    <input_sorted>N</input_sorted>
-    <preserve_memory>Y</preserve_memory>
-    <sorted_list>N</sorted_list>
-    <integer_pair>N</integer_pair>
-    <lookup>
-      <key>
-        <name>codigo</name>
-        <field>CODIGO</field>
-      </key>
-      <key>
-        <name>especialidad</name>
-        <field>CICLO</field>
-      </key>
-      <value>
-        <name>HORAS</name>
-        <rename>HORAS</rename>
-        <default/>
-        <type>None</type>
-      </value>
-    </lookup>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>736</xloc>
       <yloc>48</yloc>
       <draw>Y</draw>
     </GUI>
