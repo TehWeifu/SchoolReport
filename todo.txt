@@ -1,5 +1,0 @@
-Quitar alumnos de baja
-
-En calificaciones filtrar alumnos sin relacionar
-
-Filtrar calificaciones que no son 1,2, FI o EX

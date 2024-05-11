@@ -500,16 +500,6 @@
   </connection>
   <order>
     <hop>
-      <from>CargarCalificaciones</from>
-      <to>UnirAlumno</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>UnirAlumno</from>
-      <to>UnirModulo</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>CargarAlumnos</from>
       <to>UnirAlumno</to>
       <enabled>Y</enabled>
@@ -527,6 +517,26 @@
     <hop>
       <from>TypeCalificaciones</from>
       <to>GrabarCalificaciones</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>CargarCalificaciones</from>
+      <to>FiltrarEvaluaciones</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FiltrarEvaluaciones</from>
+      <to>UnirAlumno</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>UnirAlumno</from>
+      <to>FiltrarAlumnosNull</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FiltrarAlumnosNull</from>
+      <to>UnirModulo</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -905,7 +915,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>240</xloc>
+      <xloc>336</xloc>
       <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1111,7 +1121,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>80</xloc>
+      <xloc>64</xloc>
       <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1330,8 +1340,52 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>400</xloc>
+      <xloc>592</xloc>
       <yloc>160</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>FiltrarEvaluaciones</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <send_true_to>UnirAlumno</send_true_to>
+    <send_false_to/>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>evaluacion</leftvalue>
+        <function>IN LIST</function>
+        <rightvalue/>
+        <value>
+          <name>constant</name>
+          <type>String</type>
+          <text>01;02;FI;EX</text>
+          <length>-1</length>
+          <precision>-1</precision>
+          <isnull>N</isnull>
+          <mask/>
+        </value>
+      </condition>
+    </compare>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>208</xloc>
+      <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1374,7 +1428,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>800</xloc>
+      <xloc>928</xloc>
       <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1502,7 +1556,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>592</xloc>
+      <xloc>784</xloc>
       <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1544,7 +1598,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>240</xloc>
+      <xloc>336</xloc>
       <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1586,7 +1640,42 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>400</xloc>
+      <xloc>592</xloc>
+      <yloc>32</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>FiltrarAlumnosNull</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <send_true_to>UnirModulo</send_true_to>
+    <send_false_to/>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>alumno_id</leftvalue>
+        <function>IS NOT NULL</function>
+        <rightvalue/>
+      </condition>
+    </compare>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>464</xloc>
       <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
