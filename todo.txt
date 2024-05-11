@@ -1,1 +1,5 @@
-En cursos sacar ir sacando los padres para solo quedarte con los de primero/segundo para agregar las columnas de todos sus padres
+Quitar alumnos de baja
+
+En calificaciones filtrar alumnos sin relacionar
+
+Filtrar calificaciones que no son 1,2, FI o EX
