@@ -505,11 +505,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>ObtenerIdPais</from>
-      <to>MapearSexo</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>MapearTurno</from>
       <to>TiparAlumnos</to>
       <enabled>Y</enabled>
@@ -532,6 +527,21 @@
     <hop>
       <from>MapearSexo</from>
       <to>MapearTurno</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>NombreMunicipio</from>
+      <to>MapearSexo</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Read-Municipios</from>
+      <to>NombreMunicipio</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>ObtenerIdPais</from>
+      <to>NombreMunicipio</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -794,8 +804,8 @@
       </field>
       <field>
         <name>provincia</name>
-        <type>Number</type>
-        <format>#.#</format>
+        <type>String</type>
+        <format/>
         <currency>€</currency>
         <decimal>.</decimal>
         <group>,</group>
@@ -805,8 +815,8 @@
       </field>
       <field>
         <name>municipio</name>
-        <type>Number</type>
-        <format>#.#</format>
+        <type>String</type>
+        <format/>
         <currency>€</currency>
         <decimal>.</decimal>
         <group>,</group>
@@ -1154,8 +1164,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>16</xloc>
-      <yloc>64</yloc>
+      <xloc>32</xloc>
+      <yloc>16</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1198,8 +1208,52 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>160</xloc>
-      <yloc>64</yloc>
+      <xloc>32</xloc>
+      <yloc>112</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>GuardarAlumnos</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>LocalhostDB</connection>
+    <schema>SchoolReport</schema>
+    <table>Alumnos</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>N</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>704</xloc>
+      <yloc>240</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1236,8 +1290,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>416</xloc>
-      <yloc>64</yloc>
+      <xloc>448</xloc>
+      <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1274,8 +1328,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>592</xloc>
-      <yloc>64</yloc>
+      <xloc>576</xloc>
+      <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1316,8 +1370,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>304</xloc>
-      <yloc>64</yloc>
+      <xloc>128</xloc>
+      <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1445,52 +1499,8 @@ FROM SchoolReport.Paises
       </output>
     </remotesteps>
     <GUI>
-      <xloc>304</xloc>
-      <yloc>208</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>GuardarAlumnos</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>LocalhostDB</connection>
-    <schema>SchoolReport</schema>
-    <table>Alumnos</table>
-    <commit>1000</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>N</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>928</xloc>
-      <yloc>64</yloc>
+      <xloc>128</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1508,42 +1518,47 @@ FROM SchoolReport.Paises
     <fields>
       <field>
         <name>NIA</name>
+        <rename/>
       </field>
       <field>
         <name>fecha_nac</name>
+        <rename/>
       </field>
       <field>
         <name>municipio_nac</name>
+        <rename/>
       </field>
       <field>
         <name>provincia_nac</name>
+        <rename/>
       </field>
       <field>
         <name>nacionalidad</name>
+        <rename/>
       </field>
       <field>
         <name>sexo</name>
+        <rename/>
       </field>
       <field>
         <name>cod_postal</name>
-      </field>
-      <field>
-        <name>provincia</name>
-      </field>
-      <field>
-        <name>municipio</name>
-      </field>
-      <field>
-        <name>localidad</name>
+        <rename/>
       </field>
       <field>
         <name>fecha_matricula</name>
+        <rename/>
       </field>
       <field>
         <name>turno</name>
+        <rename/>
       </field>
       <field>
         <name>pais_nacimiento_id</name>
+        <rename/>
+      </field>
+      <field>
+        <name>MunicipioNombre</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
       <meta>
@@ -1666,57 +1681,6 @@ FROM SchoolReport.Paises
         <storage_type/>
       </meta>
       <meta>
-        <name>provincia</name>
-        <rename>provincia</rename>
-        <type>Integer</type>
-        <length>5</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>municipio</name>
-        <rename>municipio</rename>
-        <type>Integer</type>
-        <length>5</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>localidad</name>
-        <rename>localidad</rename>
-        <type>Integer</type>
-        <length>10</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
         <name>fecha_matricula</name>
         <rename>fecha_matricula</rename>
         <type>Timestamp</type>
@@ -1767,6 +1731,23 @@ FROM SchoolReport.Paises
         <currency_symbol/>
         <storage_type/>
       </meta>
+      <meta>
+        <name>MunicipioNombre</name>
+        <rename>MunicipioNombre</rename>
+        <type>String</type>
+        <length>100</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -1777,8 +1758,177 @@ FROM SchoolReport.Paises
       </output>
     </remotesteps>
     <GUI>
-      <xloc>800</xloc>
-      <yloc>64</yloc>
+      <xloc>704</xloc>
+      <yloc>112</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Read-Municipios</name>
+    <type>ExcelInput</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <header>Y</header>
+    <noempty>Y</noempty>
+    <stoponempty>N</stoponempty>
+    <filefield/>
+    <sheetfield/>
+    <sheetrownumfield/>
+    <rownumfield/>
+    <sheetfield/>
+    <filefield/>
+    <limit>0</limit>
+    <encoding>UTF-8</encoding>
+    <add_to_result_filenames>Y</add_to_result_filenames>
+    <accept_filenames>N</accept_filenames>
+    <accept_field/>
+    <accept_stepname/>
+    <file>
+      <name>/home/bigdata/Resources/Municipios.xls</name>
+      <filemask/>
+      <exclude_filemask/>
+      <file_required>N</file_required>
+      <include_subfolders>N</include_subfolders>
+    </file>
+    <fields>
+      <field>
+        <name>CPRO</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+      </field>
+      <field>
+        <name>CMUN</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+      </field>
+      <field>
+        <name>DC</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+      </field>
+      <field>
+        <name>NOMBRE</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+      </field>
+    </fields>
+    <sheets>
+      <sheet>
+        <name>dic11</name>
+        <startrow>0</startrow>
+        <startcol>0</startcol>
+      </sheet>
+    </sheets>
+    <strict_types>N</strict_types>
+    <error_ignored>N</error_ignored>
+    <error_line_skipped>N</error_line_skipped>
+    <bad_line_files_destination_directory/>
+    <bad_line_files_extension>warning</bad_line_files_extension>
+    <error_line_files_destination_directory/>
+    <error_line_files_extension>error</error_line_files_extension>
+    <line_number_files_destination_directory/>
+    <line_number_files_extension>line</line_number_files_extension>
+    <shortFileFieldName/>
+    <pathFieldName/>
+    <hiddenFieldName/>
+    <lastModificationTimeFieldName/>
+    <uriNameFieldName/>
+    <rootUriNameFieldName/>
+    <extensionFieldName/>
+    <sizeFieldName/>
+    <spreadsheet_type>JXL</spreadsheet_type>
+    <password>Encrypted </password>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>272</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>NombreMunicipio</name>
+    <type>StreamLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <from>Read-Municipios</from>
+    <input_sorted>N</input_sorted>
+    <preserve_memory>Y</preserve_memory>
+    <sorted_list>N</sorted_list>
+    <integer_pair>N</integer_pair>
+    <lookup>
+      <key>
+        <name>provincia</name>
+        <field>CPRO</field>
+      </key>
+      <key>
+        <name>municipio</name>
+        <field>CMUN</field>
+      </key>
+      <value>
+        <name>NOMBRE</name>
+        <rename>MunicipioNombre</rename>
+        <default/>
+        <type>None</type>
+      </value>
+    </lookup>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>272</xloc>
+      <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

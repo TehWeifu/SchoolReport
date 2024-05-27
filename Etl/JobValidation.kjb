@@ -446,6 +446,9 @@
         <field>
           <name>/home/bigdata/Resources/Paises.csv</name>
         </field>
+        <field>
+          <name>/home/bigdata/Resources/Municipios.xls</name>
+        </field>
       </fields>
       <parallel>N</parallel>
       <draw>Y</draw>
